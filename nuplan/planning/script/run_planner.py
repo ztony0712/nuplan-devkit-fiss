@@ -112,9 +112,9 @@ cfg = hydra.compose(config_name=simulation_hydra_paths.config_name, overrides=[
 from nuplan.planning.script.run_simulation import run_simulation as main_simulation
 
 # planner = SimplePlanner(horizon_seconds=10.0, sampling_time=0.25, acceleration=[0.0, 0.0])
-planner = IDMPlanner(target_velocity=10.0, min_gap_to_lead_agent=1.0, headway_time=1.5, accel_max=1.0, decel_max=3.0, planned_trajectory_samples=16, planned_trajectory_sample_interval=0.5, occupancy_map_radius=40)
+# planner = IDMPlanner(target_velocity=10.0, min_gap_to_lead_agent=1.0, headway_time=1.5, accel_max=1.0, decel_max=3.0, planned_trajectory_samples=16, planned_trajectory_sample_interval=0.5, occupancy_map_radius=40)
 # planner = MyPlanner(horizon_seconds=8.0, sampling_time=0.25, max_velocity=17)
-# planner = MyFissPlusPlanner(horizon_seconds=8.0, sampling_time=0.1, max_velocity=17)
+planner = MyFissPlusPlanner(horizon_seconds=8.0, sampling_time=0.1, max_velocity=17)
 
 # Run the simulation loop (real-time visualization not yet supported, see next section for visualization)
 main_simulation(cfg, planner)

@@ -166,6 +166,12 @@ class MyFissPlusPlanner(AbstractPlanner, FissPlusPlanner):
         #current_input.history.observations[0].tracked_objects.tracked_objects[0].center: StateSE2(x=331366.1206990134, y=4690974.712417038, heading=2.565304996102283)
         obstacle_positions = []
         final_time_step = 100 # TODO： Simulation的时间步，nuplan中不需要，考虑去掉
+        """
+            fiss plus planner中并没有prediction，所以需要记录每个时间步下的障碍物位置，当做完美的prediction。
+            另外由于其也没有nuplan中的simulation，所以需要自己设定一个final_time_step，记录每一个时间步下planner output，
+            最后把这些结果一帧一帧地画出来，起到一个simulation的效果。
+            
+        """
         for t_step in range(final_time_step):
             frame_positions = []
             for obstacle in obstacles_all:
